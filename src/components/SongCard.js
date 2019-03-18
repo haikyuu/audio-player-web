@@ -15,7 +15,6 @@ const styles = theme => ({
 });
 function SongCard(props) {
   const { classes, theme, title, artist, isCurrentSong, onPlay } = props;
-	console.log(theme)
   return (
     <Card className={classes.card}>
       <CardActions

@@ -3,7 +3,7 @@ import SongCard from "../components/SongCard";
 import MediaControl from "../components/MediaControl";
 import { withStyles } from "@material-ui/core/styles";
 import { connect, compose } from "react-redux";
-import {getSongUrl} from '../helpers'
+import { getSongUrl } from "../helpers";
 
 const styles = theme => ({
   container: { height: "100%", display: "flex", flexDirection: "column" },
@@ -22,15 +22,32 @@ class Library extends React.Component {
     await this.props.loadSongsAsync();
   }
   render() {
-    const { classes, songs, setCurrentSong, player, play, pause, currentSongUrl, } = this.props;
+    const {
+      classes,
+      songs,
+      setCurrentSong,
+      player,
+      play,
+      pause,
+      currentSongUrl
+    } = this.props;
     return (
       <div className={classes.container}>
         <div className={classes.library}>
           {songs.map(song => (
-            <SongCard onPlay={() => setCurrentSong(song)} key={song.id} {...song} />
+            <SongCard
+              onPlay={() => setCurrentSong(song)}
+              key={song.id}
+              {...song}
+            />
           ))}
         </div>
-        <MediaControl {...player} play={play} pause={pause} setCurrentSong={setCurrentSong} currentSongUrl={currentSongUrl}/>
+        <MediaControl
+          {...player}
+          play={play}
+          pause={pause}
+          currentSongUrl={currentSongUrl}
+        />
       </div>
     );
   }

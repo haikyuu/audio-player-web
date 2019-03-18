@@ -1,11 +1,8 @@
 import React from "react";
-import Player from "react-audio-player";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
@@ -34,15 +31,14 @@ function MediaControl(props) {
     play,
     pause,
     onNext,
-          onPrevious,
-          currentSong,
-          currentSongUrl,
+    onPrevious,
+    currentSongUrl
   } = props;
 
   const [audio, state, controls] = useAudio({
-    src: currentSongUrl, autoPlay: true,
+    src: currentSongUrl,
+    autoPlay: true
   });
-  console.log(state);
   const onPlay = () => {
     play();
     controls.play();
@@ -51,15 +47,14 @@ function MediaControl(props) {
     pause();
     controls.pause();
   };
-        console.log("song", currentSongUrl)
+  const songProgress = Math.round(100 * state.time / state.duration);
   return (
     <Card className={classes.card}>
       {audio}
       <LinearProgress
         color="secondary"
-        variant="buffer"
-        value={progress}
-        valueBuffer={bufferProgress}
+        value={songProgress}
+        variant="determinate"
       />
       <div className={classes.actionsContainer}>
         <CardActions className={classes.actions}>
