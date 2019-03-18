@@ -11,6 +11,7 @@ import PauseIcon from "@material-ui/icons/Pause";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { useAudio } from "react-use";
 
 const styles = theme => ({
   card: {},
@@ -24,9 +25,36 @@ const styles = theme => ({
   playIcon: {}
 });
 function MediaControl(props) {
-  const { theme, classes, isPaused, bufferProgress = 0, progress = 0 } = props;
+  const {
+    theme,
+    classes,
+    isPaused = true,
+    bufferProgress = 0,
+    progress = 0,
+    play,
+    pause,
+    onNext,
+          onPrevious,
+          currentSong,
+          currentSongUrl,
+  } = props;
+
+  const [audio, state, controls] = useAudio({
+    src: currentSongUrl, autoPlay: true,
+  });
+  console.log(state);
+  const onPlay = () => {
+    play();
+    controls.play();
+  };
+  const onPause = () => {
+    pause();
+    controls.pause();
+  };
+        console.log("song", currentSongUrl)
   return (
     <Card className={classes.card}>
+      {audio}
       <LinearProgress
         color="secondary"
         variant="buffer"
@@ -35,10 +63,13 @@ function MediaControl(props) {
       />
       <div className={classes.actionsContainer}>
         <CardActions className={classes.actions}>
-          <IconButton aria-label="Previous">
+          <IconButton aria-label="Previous" onClick={onPrevious}>
             <SkipPreviousIcon color="primary" fontSize="large" />
           </IconButton>
-          <IconButton aria-label="Play/pause">
+          <IconButton
+            onClick={isPaused ? onPlay : onPause}
+            aria-label="Play/pause"
+          >
             {isPaused ? (
               <PlayArrowIcon
                 color="primary"
@@ -53,7 +84,7 @@ function MediaControl(props) {
               />
             )}
           </IconButton>
-          <IconButton aria-label="Next">
+          <IconButton aria-label="Next" onClick={onNext}>
             <SkipNextIcon color="primary" fontSize="large" />
           </IconButton>
         </CardActions>
