@@ -2,7 +2,7 @@ import React from "react";
 import SongCard from "../components/SongCard";
 import MediaControl from "../components/MediaControl";
 import { withStyles } from "@material-ui/core/styles";
-import { connect, compose } from "react-redux";
+import { connect } from "react-redux";
 import { getSongUrl } from "../helpers";
 
 const styles = theme => ({

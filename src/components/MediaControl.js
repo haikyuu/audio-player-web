@@ -23,11 +23,8 @@ const styles = theme => ({
 });
 function MediaControl(props) {
   const {
-    theme,
     classes,
     isPaused = true,
-    bufferProgress = 0,
-    progress = 0,
     play,
     pause,
     onNext,

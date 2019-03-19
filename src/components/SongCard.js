@@ -14,7 +14,7 @@ const styles = theme => ({
   content: { flex: 1 }
 });
 function SongCard(props) {
-  const { classes, theme, title, artist, isCurrentSong, onPlay } = props;
+  const { classes, title, artist, isCurrentSong, onPlay } = props;
   return (
     <Card className={classes.card}>
       <CardActions
