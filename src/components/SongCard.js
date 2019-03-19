@@ -9,8 +9,8 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
 const styles = theme => ({
   card: { display: "flex", marginBottom: theme.spacing.unit, minWidth: 350 },
-  currentSong: { borderLeft: `solid 20px ${theme.palette.secondary.light }` },
-  action: {},
+  currentSong: { borderLeft: `solid 20px ${theme.palette.secondary.light}` },
+  action: { transition: "border-width .6s" },
   content: { flex: 1 }
 });
 function SongCard(props) {
