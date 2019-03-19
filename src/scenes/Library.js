@@ -38,6 +38,7 @@ class Library extends React.Component {
             <SongCard
               onPlay={() => setCurrentSong(song)}
               key={song.id}
+              isCurrentSong={song.id === player.currentSong}
               {...song}
             />
           ))}
