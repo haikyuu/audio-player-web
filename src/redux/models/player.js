@@ -11,7 +11,16 @@ const player = {
       return { ...state, isPaused: false };
     }
   },
-  effects: dispatch => ({})
+  effects: dispatch => ({
+    // offset should be -1 for previous song.
+    // slightly less readable but reusable 👀
+    setNextSong( offset = 1, rootState) {
+      const { ids } = rootState.songs;
+      const nextSongIndex =
+        (ids.indexOf(rootState.player.currentSong) + offset) % ids.length;
+      dispatch.player.setCurrentSong({id: ids[nextSongIndex]});
+    }
+  })
 };
 
 export default player;
