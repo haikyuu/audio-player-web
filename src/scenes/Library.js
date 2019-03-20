@@ -29,8 +29,8 @@ class Library extends React.Component {
       player,
       play,
       pause,
-            currentSongUrl,
-            setNextSong
+      currentSongUrl,
+      setNextSong
     } = this.props;
     return (
       <div className={classes.container}>
@@ -48,8 +48,8 @@ class Library extends React.Component {
           {...player}
           play={play}
           pause={pause}
-          onPrevious={()=>setNextSong(-1)}
-          onNext={()=>setNextSong(1)}
+          onPrevious={() => setNextSong(-1)}
+          onNext={() => setNextSong(1)}
           currentSongUrl={currentSongUrl}
         />
       </div>
@@ -73,7 +73,7 @@ const mapDispatch = ({
   play,
   setCurrentSong,
   pause,
-  setNextSong,
+  setNextSong
 });
 export const StyledLibrary = withStyles(styles, { withTheme: true })(Library);
 const ConnectedLibrary = connect(mapState, mapDispatch)(StyledLibrary);
