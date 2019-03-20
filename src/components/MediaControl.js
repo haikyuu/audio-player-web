@@ -55,16 +55,23 @@ function MediaControl(props) {
       />
       <div className={classes.actionsContainer}>
         <CardActions className={classes.actions}>
-          <IconButton aria-label="Previous" onClick={onPrevious}>
-            <SkipPreviousIcon color="primary" fontSize="large" />
+          <IconButton
+            disabled={!currentSongUrl}
+            aria-label="Previous"
+            onClick={onPrevious}
+            color="primary"
+          >
+            <SkipPreviousIcon color="inherit" fontSize="large" />
           </IconButton>
           <IconButton
+            disabled={!currentSongUrl}
             onClick={isPaused ? onPlay : onPause}
             aria-label="Play/pause"
+            color="primary"
           >
             {isPaused ? (
               <PlayArrowIcon
-                color="primary"
+                color="inherit"
                 fontSize="large"
                 className={classes.playIcon}
               />
@@ -76,8 +83,13 @@ function MediaControl(props) {
               />
             )}
           </IconButton>
-          <IconButton aria-label="Next" onClick={onNext}>
-            <SkipNextIcon color="primary" fontSize="large" />
+          <IconButton
+            disabled={!currentSongUrl}
+            aria-label="Next"
+            onClick={onNext}
+            color="primary"
+          >
+            <SkipNextIcon color="inherit" fontSize="large" />
           </IconButton>
         </CardActions>
       </div>

@@ -11,7 +11,9 @@ const styles = theme => ({
   card: { display: "flex", marginBottom: theme.spacing.unit, minWidth: 350 },
   currentSong: { borderLeft: `solid 20px ${theme.palette.secondary.light}` },
   action: { transition: "border-width .6s" },
-  content: { flex: 1 }
+  content: { flex: 1 },
+  playButton: { transition: 'opacity .6s' },
+  hidden: {opacity: 0}
 });
 function SongCard(props) {
   const { classes, title, artist, isCurrentSong, onPlay } = props;
@@ -22,7 +24,7 @@ function SongCard(props) {
           isCurrentSong ? classes.currentSong : ""
         }`}
       >
-        <IconButton aria-label="Play/pause" onClick={onPlay}>
+	      <IconButton className={`${classes.playButton} ${isCurrentSong ? classes.hidden: ''}`} aria-label="Play/pause" onClick={onPlay}>
           <PlayArrowIcon className={classes.playIcon} />
         </IconButton>
       </CardActions>
